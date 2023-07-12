@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div>
+    <div class="Customer">
+        <div class="row" data-bind=" with:newCustomer">
+            <div class="col-4">
+                <label>Customer Name</label>
+                <input type="text" class="form-control" data-bind="value:name" />
+            </div>
+            <div class="col-4">
+                <label>Address</label>
+                <input type="text" class="form-control" data-bind="value:address" />
+            </div> <div class="col-4">
+                <label>PhoneNo:</label>
+                <input type="text" class="form-control" data-bind="value:phoneNo" />
+            </div>
+        </div>
+    </div>
+  
+    <div class="item" >
+        <div class="row" data-bind="with:newItem">
+            <div class="col-4">
+                <label>Item</label>
+                <input class="form-control" data-bind="value:name"/>
+            </div>
+            <div class="col-4">
+                <label>Price</label>
+                <input type="text" class="form-control" data-bind="value:price" />
+            </div> 
+            <div class="col-4">
+                <label>Quantity:</label>
+                <input type="text" class="form-control" data-bind="value:quantity" />
+            </div>
+        </div> 
+        <div class="row" data-bind="with:newItem">
+            <div class="col-4">
+                <label>Discount:</label>
+                <input type="text" class="form-control" data-bind="value:discount" />
+            </div>
+            <div class="col-4">
+                <label>Total:</label>
+                <input type="text" class="form-control" data-bind="value:total" />
+            </div> 
+            <div class="col-4">
+                <button type="submit" data-bind="click:$root.addItem">ADD</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                    <th>item Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                     <tr>
+
+                </thead>
+    <tbody data-bind="foreach:Items">
+                    <tr >
+                        <td data-bind="$index()+1"></td>
+                        <td data-bind="text:name"></td>
+                        <td data-bind="text:price"></td>
+                        <td data-bind="text:quantity"></td>
+                        <td data-bind="text:discount"></td>
+                        <td data-bind="text:total"></td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total:</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+            <td ><span data-bind="number: $root.grandTotal"></span></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+
+            <button type="submit" data-bind="click:$root.test"> CheckOut </button>
+@section Scripts{
+    <script src="~/js/knockout.js"></script>
+    <script src="~/js/app/customer/customer.model.js"></script>
+    <script src="~/js/app/customer/customer.controller.js"></script>
+    <script src="~/js/app/item/item.model.js"></script>
+    <script src="~/js/app/item/item.controller.js"></script>
+    <script>
+        var obj2 = new ItemController();
+        ko.applyBindings(obj2);
+    
+    </script>
+}
